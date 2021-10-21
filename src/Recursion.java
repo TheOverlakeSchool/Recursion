@@ -9,7 +9,9 @@ public class Recursion {
 //        printStarsRecursive(5);
 //        Scanner scanner = new Scanner(new File("input.txt"));
 //        reverseLines(scanner);
-        System.out.println(pow(2,-2));
+//        System.out.println(pow(2,-2));
+//        printBinary(-6);
+        System.out.println(isPalindrome2("madamimadam"));
     }
 
     // Prints a line containing the given number of stars.
@@ -71,8 +73,34 @@ public class Recursion {
     }
 
     public static void printBinary(int value) {
-        if (value < 2) {
-            System.out.println(value);
+        if (value < 0) {
+            System.out.print("-");
+            printBinary(-value);
+        } else if (value < 2) {
+            System.out.print(value);
+        } else {
+            printBinary(value / 2);
+            System.out.print(value % 2);
         }
+    }
+
+    public static boolean isPalindrome(String str) {
+        if (str.length() < 2) {
+            return true;
+        } else {
+            char first = str.charAt(0);
+            char last = str.charAt(str.length() - 1);
+            if (first != last) {
+                return false;
+            }
+            String middle = str.substring(1,str.length()-1);
+            return isPalindrome(middle);
+        }
+    }
+
+    public static boolean isPalindrome2(String str) {
+        return str.length() < 2 ||
+                (str.charAt(0) == str.charAt(str.length() - 1)) &&
+                isPalindrome2(str.substring(1,str.length()-1));
     }
 }
